@@ -9,6 +9,11 @@ import {
   WebGLRenderer,
 } from 'three';
 
+export type SceneConstructorParams = {
+  element: HTMLDivElement;
+  dimensions: EulerDimensions;
+};
+
 export type EulerDimensions = {
   width: number;
   height: number;
@@ -20,6 +25,7 @@ export interface IAppScene {
   resize: (width: number, height: number) => void;
 }
 
+// Some initialization here to have cleaner code elsewhere
 export abstract class AbstractAppScene {
   renderer = new WebGLRenderer({ alpha: true, antialias: true });
   scene = new Scene();
@@ -50,7 +56,7 @@ export abstract class AbstractAppScene {
     this.camera.near = 1;
     this.camera.fov = 50;
     this.camera.far = 1000;
-    this.camera.position.set(0, 0, 500);
+    this.camera.position.set(0, 10, 100);
     this.scene.add(this.camera);
   };
 
@@ -58,8 +64,3 @@ export abstract class AbstractAppScene {
     this.renderer.setSize(width, height);
   }
 }
-
-export type SceneConstructorParams = {
-  element: HTMLDivElement;
-  dimensions: EulerDimensions;
-};
