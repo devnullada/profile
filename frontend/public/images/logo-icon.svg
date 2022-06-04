@@ -2,20 +2,11 @@
      xmlns="http://www.w3.org/2000/svg">
 
     <rect
-            fill="#06b66c"
-            x="50"
+            fill="orange"
+            x="0"
             y="0"
-            width="50"
-            height="50"
+            width="100"
+            height="100"
     />
 
-    <rect
-            fill="#06b66c"
-            x="0"
-            y="50"
-            width="50"
-            height="50"
-    />
-    <circle cx="25" cy="25" r="20" stroke-width="15" fill="white"/>
-    <circle cx="25" cy="25" r="10" stroke-width="15" fill="black"/>
 </svg>

@@ -39,7 +39,8 @@ export abstract class AbstractAppScene {
     this.renderer.toneMappingExposure = 1.25;
 
     element.appendChild(this.renderer.domElement);
-    element.style.background = 'radial-gradient(#292929, #000000)';
+    this.scene.background = new Color(0xe0e0e0);
+
     this.renderer.setSize(dimensions.width, dimensions.height);
     this.initializeCamera();
     this.initializeLight();
@@ -56,7 +57,7 @@ export abstract class AbstractAppScene {
     this.camera.near = 1;
     this.camera.fov = 50;
     this.camera.far = 1000;
-    this.camera.position.set(0, 10, 100);
+    this.camera.position.set(0, 100, 400);
     this.scene.add(this.camera);
   };
 

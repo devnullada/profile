@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { useEffectOnce } from 'react-use';
 import './App.scss';
-import ProfileScene from './Scene/scene';
+import ProfileScene from './Scene/Scene';
 import { AbstractAppScene } from './State/Types/Types';
 import useWindowResizer from './Hooks/useWindowResizer';
 
