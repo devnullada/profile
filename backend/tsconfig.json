@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "strict": true,
+        "target": "ES2018",
+        "noImplicitAny": true,
+        "types": [],
+        "moduleResolution": "node",
+        "noUnusedLocals": true,
+        "sourceMap": false,
+        "removeComments": true,
+        "outDir": "build",
+        "baseUrl": ".",
+        "rootDirs": [
+            ".",
+            "../shared"
+        ]
+    },
+}

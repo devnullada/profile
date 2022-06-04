@@ -1,0 +1,7 @@
+{
+  "license": "MIT",
+  "devDependencies": {
+    "prettier": "latest"
+  },
+  "dependencies": {}
+}
