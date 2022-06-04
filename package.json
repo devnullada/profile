@@ -1,7 +1,8 @@
 {
   "license": "MIT",
+  "name": "profile-backend",
+  "version": "1.0.0",
   "devDependencies": {
     "prettier": "latest"
-  },
-  "dependencies": {}
+  }
 }

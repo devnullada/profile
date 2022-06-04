@@ -1,7 +1,5 @@
 {
-  "name": "app-backend",
-  "version": "1.0.0",
-  "license": "MIT",
+  "name": "profile-backend",
   "dependencies": {
     "body-parser": "^1.20.0",
     "chalk": "^4.1.2",

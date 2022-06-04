@@ -1,7 +1,5 @@
 {
-  "name": "app-frontend",
-  "version": "1.0.0",
-  "private": true,
+  "name": "profile-frontend",
   "dependencies": {
     "classnames": "^2.3.1",
     "csstype": "^2.6.20",
