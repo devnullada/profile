@@ -2,21 +2,23 @@ import {
   ACESFilmicToneMapping,
   Clock,
   Color,
+  Fog,
+  Mesh,
+  MeshLambertMaterial,
   PerspectiveCamera,
+  PlaneBufferGeometry,
   PointLight,
+  RepeatWrapping,
   Scene,
   sRGBEncoding,
+  TextureLoader,
   WebGLRenderer,
 } from 'three';
+import { EulerDimensions } from '../Types';
 
 export type SceneConstructorParams = {
   element: HTMLDivElement;
   dimensions: EulerDimensions;
-};
-
-export type EulerDimensions = {
-  width: number;
-  height: number;
 };
 
 export interface IAppScene {
@@ -34,16 +36,40 @@ export abstract class AbstractAppScene {
   clock = new Clock();
 
   protected constructor({ element, dimensions }: SceneConstructorParams) {
+    element.appendChild(this.renderer.domElement);
+    this.initializeRenderer(dimensions);
+    this.initializeScene();
+    this.initializeCamera();
+    this.initializeLight();
+    this.createFloor();
+  }
+
+  private initializeScene() {
+    this.scene.fog = new Fog(0xa0a0a0, 10, 2000);
+    this.scene.background = new Color(0xe0e0e0);
+  }
+
+  private createFloor() {
+    const tex = new TextureLoader().load('/images/bt_sheet.png');
+    tex.anisotropy = 32;
+    tex.repeat.set(10, 10);
+    tex.wrapT = RepeatWrapping;
+    tex.wrapS = RepeatWrapping;
+    const geo = new PlaneBufferGeometry(10000, 10000);
+    const mat = new MeshLambertMaterial({
+      map: tex,
+    });
+    const mesh = new Mesh(geo, mat);
+    mesh.position.set(0, -5, 0);
+    mesh.rotation.set(Math.PI / -2, 0, 0);
+    this.scene.add(mesh);
+  }
+
+  private initializeRenderer(dimensions: EulerDimensions) {
+    this.renderer.setSize(dimensions.width, dimensions.height);
     this.renderer.outputEncoding = sRGBEncoding;
     this.renderer.toneMapping = ACESFilmicToneMapping;
     this.renderer.toneMappingExposure = 1.25;
-
-    element.appendChild(this.renderer.domElement);
-    this.scene.background = new Color(0xe0e0e0);
-
-    this.renderer.setSize(dimensions.width, dimensions.height);
-    this.initializeCamera();
-    this.initializeLight();
   }
 
   private initializeLight = () => {

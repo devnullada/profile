@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { useEffectOnce } from 'react-use';
 import './App.scss';
 import ProfileScene from './Scene/Scene';
-import { AbstractAppScene } from './State/Types/Types';
+import { AbstractAppScene } from './Scene/SceneClass';
 import useWindowResizer from './Hooks/useWindowResizer';
 
 const App: React.FC = () => {
