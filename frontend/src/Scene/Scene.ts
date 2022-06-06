@@ -3,11 +3,11 @@ import {
   IAppScene,
   SceneConstructorParams,
 } from './SceneClass';
-import { Mesh } from 'three';
-import { SceneObject } from '../Types';
+import { Mesh, Vector3 } from 'three';
+import { ISceneObject } from '../Types';
 import BitcoinBlock from '../Objects/BitcoinBlock';
 import Teapot from '../Objects/Teapot';
-import BoxText from '../Objects/BoxText';
+import Sentence from '../Objects/Sentence';
 
 export default class ProfileScene
   extends AbstractAppScene
@@ -15,31 +15,40 @@ export default class ProfileScene
 {
   teapot?: Mesh;
   randomBox?: Mesh;
-  sceneObjects: SceneObject[] = [];
+  sceneObjects: ISceneObject<any>[] = [];
 
   constructor(args: SceneConstructorParams) {
     super(args);
 
     // Text
     this.add(
-      new BoxText({
+      new Sentence({
         text: 'Welcome to club. Have tea.',
+        position: new Vector3(0, 60, 0),
       })
     );
 
-    this.add(new Teapot());
-    this.add(new BitcoinBlock());
-    this.createRandomBox();
+    this.add(
+      new Teapot({
+        size: 20,
+        position: new Vector3(0, 10, 0),
+      })
+    );
+
+    this.add(
+      new BitcoinBlock({
+        text: 'Bitcoin Block',
+        position: new Vector3(0, 20, 0),
+      })
+    );
 
     this.animate();
   }
 
-  add(obj: SceneObject) {
+  add(obj: ISceneObject<any>) {
     this.sceneObjects.push(obj);
-    this.scene.add(obj.container);
+    this.scene.add(obj.threeObject);
   }
-
-  createRandomBox() {}
 
   animate = () => {
     requestAnimationFrame(this.animate);

@@ -29,7 +29,7 @@ const App: React.FC = () => {
     }
   });
 
-  return <div className="App-scene" ref={sceneRef} />;
+  return <div className="App-scene" ref={sceneRef}></div>;
 };
 
 export default App;

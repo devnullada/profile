@@ -45,7 +45,6 @@ export abstract class AbstractAppScene {
   }
 
   private initializeScene() {
-    this.scene.fog = new Fog(0xa0a0a0, 10, 2000);
     this.scene.background = new Color(0xe0e0e0);
   }
 

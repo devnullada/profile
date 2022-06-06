@@ -6,22 +6,26 @@ import {
   RepeatWrapping,
   sRGBEncoding,
   TextureLoader,
+  Vector3,
 } from 'three';
-import { SceneObject } from '../Types';
+import { ISceneObject } from '../Types';
 
-export default class Teapot implements SceneObject {
-  container;
+export type TeapotParams = {
+  size?: number;
+  position?: Vector3;
+};
 
-  constructor() {
-    const teapotSize = 10;
+export default class Teapot implements ISceneObject<Mesh> {
+  threeObject;
 
+  constructor({ size = 30, position = new Vector3() }: TeapotParams) {
     let tess = 20;
     const bottom = true;
     const lid = true;
     const body = true;
     const fitLid = false;
 
-    const geo = new TeapotGeometry(teapotSize, tess, bottom, lid, body, fitLid);
+    const geo = new TeapotGeometry(size, tess, bottom, lid, body, fitLid);
     const textureMap = new TextureLoader().load('/images/tea-mat.svg');
     textureMap.wrapS = textureMap.wrapT = RepeatWrapping;
     textureMap.anisotropy = 16;
@@ -31,7 +35,7 @@ export default class Teapot implements SceneObject {
       map: textureMap,
       side: DoubleSide,
     });
-    this.container = new Mesh(geo, mat);
-    this.container.position.set(0, teapotSize / 2, 0);
+    this.threeObject = new Mesh(geo, mat);
+    this.threeObject.position.copy(position);
   }
 }
